@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "948172562228",
+    "project_id": "kachaapp-e4fb5",
+    "storage_bucket": "kachaapp-e4fb5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:948172562228:android:64cf3cb51562cd86e08f61",
+        "android_client_info": {
+          "package_name": "com.kacha.app.kacha_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "948172562228-ncjeps676v9t9dva9hgmrkrm970d3mmn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNuqXnfcH5HfQs3IPNUbkUZfwwVrCzw3A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "948172562228-ncjeps676v9t9dva9hgmrkrm970d3mmn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "948172562228-hi48a0esv9mqg6s7ik6mlqhpurua86sl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kacha.app.kachaApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
