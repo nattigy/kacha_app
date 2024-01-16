@@ -20,15 +20,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(55),
-        child: CustomAppBar(leading: false, isRoot: true),
-      ),
-      body: RefreshIndicator(
+    return RefreshIndicator(
         onRefresh: () async => reLoadApp(),
         child: Text("home"),
-      ),
-    );
+      );
   }
 }

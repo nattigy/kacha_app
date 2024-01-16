@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../utils/navigator.dart';
-import '../auth/bloc/auth_bloc.dart';
-import '../auth/data/auth_repository.dart';
 import '../edit_user/edit_user_page.dart';
 import '../email_verification/edit_email_page.dart';
 import '../phone_verification/edit_phone_number_page.dart';
-import '../reset_password/reset_password_page.dart';
 import '../widgets/cards/margin_container.dart';
 import '../widgets/cards/max_width.dart';
 import 'bloc/users.bloc.dart';
@@ -29,9 +26,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
         BlocListener<UsersBloc, UsersState>(
           listener: (ctx, userOperationState) {
             if (userOperationState is DeleteUserSuccess) {
-              context
-                  .read<AuthenticationBloc>()
-                  .add(AuthenticationLogoutRequested());
+              // context
+              //     .read<AuthenticationBloc>()
+              //     .add(AuthenticationLogoutRequested());
             }
           },
         ),
@@ -108,47 +105,12 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         ],
                       ),
                     ),
-                    BlocBuilder<AuthenticationBloc, AuthenticationState>(
-                      builder: (ctx, authState) {
-                        if (authState.status ==
-                            AuthenticationStatus.authenticated) {
-                          return Column(
-                            children: [
-                              const SizedBox(height: 16.0),
-                              OutlinedButton(
-                                onPressed: () {
-                                  navigatorPush(
-                                    context,
-                                    const ResetPasswordPage(),
-                                  );
-                                },
-                                style: ButtonStyle(
-                                  padding: MaterialStateProperty.all(
-                                    const EdgeInsets.all(16.0),
-                                  ),
-                                ),
-                                child: const Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Icon(Icons.lock_outline_rounded),
-                                    Text('Change password'),
-                                    SizedBox(width: 32.0),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          );
-                        }
-                        return Container();
-                      },
-                    ),
                     const SizedBox(height: 16.0),
                     OutlinedButton(
                       onPressed: () {
-                        context
-                            .read<AuthenticationBloc>()
-                            .add(AuthenticationLogoutRequested());
+                        // context
+                        //     .read<AuthenticationBloc>()
+                        //     .add(AuthenticationLogoutRequested());
                       },
                       style: ButtonStyle(
                         padding: MaterialStateProperty.all(

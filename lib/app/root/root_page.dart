@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../utils/firebase_events_logger.dart';
 import '../home/home_navigator.dart';
 import 'bloc/navigation_bloc.dart';
 import 'widgets/bottom_navigation.dart';
@@ -29,6 +28,8 @@ class _RootPageState extends State<RootPage> {
   void initState() {
     globalNavigator = context;
     tabNavigators = [
+      HomeNavigator(navigatorKey: tabNavigatorKeys[TabItem.home.index]),
+      HomeNavigator(navigatorKey: tabNavigatorKeys[TabItem.home.index]),
       HomeNavigator(navigatorKey: tabNavigatorKeys[TabItem.home.index]),
     ];
     super.initState();
@@ -58,7 +59,6 @@ class _RootPageState extends State<RootPage> {
       child: BlocConsumer<NavigationBloc, NavigationState>(
         listener: (ctx, state) {
           if (state is NavigatedToHome) {
-            analyticsBottomNavigationEvent(selectedTab: "home");
             setCurrentIndex(TabItem.home);
             Navigator.pushNamed(
               tabNavigatorKeys[TabItem.home.index].currentContext!,
@@ -66,26 +66,24 @@ class _RootPageState extends State<RootPage> {
             );
           }
           if (state is NavigatedToJobs) {
-            analyticsBottomNavigationEvent(selectedTab: "jobs");
-            setCurrentIndex(TabItem.jobs);
+            setCurrentIndex(TabItem.send);
             Navigator.pushNamed(
-              tabNavigatorKeys[TabItem.jobs.index].currentContext!,
+              tabNavigatorKeys[TabItem.send.index].currentContext!,
               state.pathName,
             );
           }
           if (state is NavigatedToProfile) {
-            analyticsBottomNavigationEvent(selectedTab: "profile");
-            setCurrentIndex(TabItem.profile);
+            setCurrentIndex(TabItem.transactions);
             if (state.pathName != "") {
               Navigator.pushNamed(
-                  tabNavigatorKeys[TabItem.profile.index].currentContext!,
+                  tabNavigatorKeys[TabItem.transactions.index].currentContext!,
                   state.pathName);
             } else {
               while (Navigator.canPop(globalNavigator)) {
                 Navigator.pop(globalNavigator);
               }
               Navigator.pushNamedAndRemoveUntil(
-                  tabNavigatorKeys[TabItem.profile.index].currentContext!,
+                  tabNavigatorKeys[TabItem.transactions.index].currentContext!,
                   "/",
                   (route) => false);
             }
@@ -93,12 +91,55 @@ class _RootPageState extends State<RootPage> {
         },
         builder: (ctx, state) {
           return Scaffold(
+            // appBar: const PreferredSize(
+            //   preferredSize: Size.fromHeight(55),
+            //   child: CustomAppBar(leading: false, isRoot: true),
+            // ),
+            appBar: AppBar(
+              title: Text("Home"),
+            ),
+            drawer: Drawer(
+              child: Column(
+                children: [
+                  const DrawerHeader(
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                    ),
+                    child: Text('Drawer Header'),
+                  ),
+                  ListTile(
+                    title: const Text('Item 1'),
+                    onTap: () {
+                      // Update the state of the app.
+                      // ...
+                    },
+                  ),
+                  ListTile(
+                    title: const Text('Item 2'),
+                    onTap: () {
+                      // Update the state of the app.
+                      // ...
+                    },
+                  ),
+                  ListTile(
+                    title: const Text('Item 3'),
+                    onTap: () {
+                      // Update the state of the app
+                      // ...
+                      // Then close the drawer
+                      Navigator.pop(context);
+                    },
+                  ),
+                  Text("drawer"),
+                ],
+              ),
+            ),
             body: IndexedStack(
               index: _currentTab.index,
               children: [
                 _buildOffstageNavigator(TabItem.home, true),
-                _buildOffstageNavigator(TabItem.jobs, true),
-                _buildOffstageNavigator(TabItem.profile, true),
+                _buildOffstageNavigator(TabItem.send, true),
+                _buildOffstageNavigator(TabItem.transactions, true),
               ],
             ),
             bottomNavigationBar: BottomNavigation(
@@ -120,4 +161,4 @@ class _RootPageState extends State<RootPage> {
   }
 }
 
-enum TabItem { home, jobs, profile }
+enum TabItem { home, send, transactions }

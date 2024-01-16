@@ -5,7 +5,6 @@ import 'package:formz/formz.dart';
 import '../../../utils/error_string.dart';
 import '../../../validators/password_validator.dart';
 import '../../../validators/phone_number_validator.dart';
-import '../../auth/data/auth_repository.dart';
 import '../data/reset_password_repository.dart';
 
 part 'reset_password_state.dart';

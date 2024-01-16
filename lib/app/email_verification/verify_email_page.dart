@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../utils/input_validators.dart';
 import '../../utils/navigator.dart';
-import '../auth/bloc/auth_bloc.dart';
-import '../root/root_page.dart';
 import '../widgets/app_bar/only_logo_app_bar.dart';
 import '../widgets/buttons/main_button.dart';
 import '../widgets/inputs/text_input_field.dart';
@@ -27,11 +25,11 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
 
   @override
   void initState() {
-    if (context.read<AuthenticationBloc>().state.user.email != null) {
-      emailCont.text = context.read<AuthenticationBloc>().state.user.email!;
-      emailText = context.read<AuthenticationBloc>().state.user.email!;
-      isValidEmail = true;
-    }
+    // if (context.read<AuthenticationBloc>().state.user.email != null) {
+    //   emailCont.text = context.read<AuthenticationBloc>().state.user.email!;
+    //   emailText = context.read<AuthenticationBloc>().state.user.email!;
+    //   isValidEmail = true;
+    // }
     super.initState();
   }
 
@@ -54,10 +52,10 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
           );
         }
         if (emailState is EmailSuccessful) {
-          navigatorPush(context, const RootPage());
-          context
-              .read<AuthenticationBloc>()
-              .add(AuthenticationReFetchUserChanged());
+          // navigatorPush(context, const RootPage());
+          // context
+          //     .read<AuthenticationBloc>()
+          //     .add(AuthenticationReFetchUserChanged());
         }
         if (emailState is EmailVerificationFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -155,9 +153,9 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                 alignment: Alignment.bottomCenter,
                 child: TextButton(
                   onPressed: () {
-                    context
-                        .read<AuthenticationBloc>()
-                        .add(AuthenticationLogoutRequested());
+                    // context
+                    //     .read<AuthenticationBloc>()
+                    //     .add(AuthenticationLogoutRequested());
                   },
                   child: const Text("Cancel and logout?"),
                 ),

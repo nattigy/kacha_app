@@ -41,12 +41,12 @@ class BottomNavigation extends StatelessWidget {
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.briefcase),
-              label: 'Jobs',
+              icon: Icon(FontAwesomeIcons.arrowUp),
+              label: 'Send',
             ),
             BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.circleUser),
-              label: 'Profile',
+              icon: Icon(FontAwesomeIcons.clockRotateLeft),
+              label: 'Transactions',
             ),
           ],
         ),

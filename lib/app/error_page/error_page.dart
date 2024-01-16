@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../auth/bloc/auth_bloc.dart';
 import '../widgets/app_bar/only_logo_app_bar.dart';
 
 class ErrorPage extends StatelessWidget {
@@ -19,9 +17,9 @@ class ErrorPage extends StatelessWidget {
           Center(
             child: TextButton(
               onPressed: () {
-                context
-                    .read<AuthenticationBloc>()
-                    .add(AuthenticationReFetchUserChanged());
+                // context
+                //     .read<AuthenticationBloc>()
+                //     .add(AuthenticationReFetchUserChanged());
               },
               child: const Text("Some error occurred, please retry"),
             ),
@@ -30,9 +28,9 @@ class ErrorPage extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: TextButton(
               onPressed: () {
-                context
-                    .read<AuthenticationBloc>()
-                    .add(AuthenticationLogoutRequested());
+                // context
+                //     .read<AuthenticationBloc>()
+                //     .add(AuthenticationLogoutRequested());
               },
               child: const Text("logout?"),
             ),

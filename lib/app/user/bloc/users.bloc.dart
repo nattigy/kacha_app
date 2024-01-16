@@ -1,8 +1,8 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../utils/error_string.dart';
-import '../../auth/data/auth_repository.dart';
 import '../data/user.repository.dart';
 import '../entity/user.entity.dart';
 
@@ -20,8 +20,8 @@ class UsersBloc extends Cubit<UsersState> {
   void loadUser() async {
     emit(UserLoading());
     try {
-      final item = await authenticationRepository.getUser();
-      emit(UserLoadSuccess(item!));
+      // final item = await authenticationRepository.getUser();
+      // emit(UserLoadSuccess(item!));
     } catch (e) {
       emit(UserOperationFailure(errorString(e)));
     }

@@ -4,8 +4,6 @@ import 'package:formz/formz.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../utils/navigator.dart';
-import '../auth/bloc/auth_bloc.dart';
-import '../widgets/buttons/main_button.dart';
 import '../widgets/cards/max_width.dart';
 import '../widgets/text/form-label-text.dart';
 import 'bloc/phone_cubit.dart';
@@ -29,21 +27,21 @@ class _EditPhoneNumberPageState extends State<EditPhoneNumberPage> {
 
   @override
   void initState() {
-    countryCode =
-        context.read<AuthenticationBloc>().state.user.countryCode ?? "+251";
-    countryISOCode =
-        context.read<AuthenticationBloc>().state.user.countryISOCode ?? "ET";
-    phoneNumberCont.text = context
-        .read<AuthenticationBloc>()
-        .state
-        .user
-        .phoneNumber
-        .replaceAll(countryCode, "");
-    context.read<PhoneCubit>().phoneNumberChanged(
-          context.read<AuthenticationBloc>().state.user.phoneNumber,
-        );
-    context.read<PhoneCubit>().countryCodeChanged(countryCode);
-    context.read<PhoneCubit>().countryISOCodeChanged(countryISOCode);
+    // countryCode =
+    //     context.read<AuthenticationBloc>().state.user.countryCode ?? "+251";
+    // countryISOCode =
+    //     context.read<AuthenticationBloc>().state.user.countryISOCode ?? "ET";
+    // phoneNumberCont.text = context
+    //     .read<AuthenticationBloc>()
+    //     .state
+    //     .user
+    //     .phoneNumber
+    //     .replaceAll(countryCode, "");
+    // context.read<PhoneCubit>().phoneNumberChanged(
+    //       context.read<AuthenticationBloc>().state.user.phoneNumber,
+    //     );
+    // context.read<PhoneCubit>().countryCodeChanged(countryCode);
+    // context.read<PhoneCubit>().countryISOCodeChanged(countryISOCode);
     super.initState();
   }
 
@@ -67,9 +65,9 @@ class _EditPhoneNumberPageState extends State<EditPhoneNumberPage> {
               );
             }
             if (state.status == FormzSubmissionStatus.success) {
-              context
-                  .read<AuthenticationBloc>()
-                  .add(AuthenticationReFetchUserChanged());
+              // context
+              //     .read<AuthenticationBloc>()
+              //     .add(AuthenticationReFetchUserChanged());
             }
             if (state.status == FormzSubmissionStatus.failure) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -106,28 +104,28 @@ class _EditPhoneNumberPageState extends State<EditPhoneNumberPage> {
                         },
                       ),
                       const SizedBox(height: 10),
-                      SizedBox(
-                        width: double.infinity,
-                        child: MainButton(
-                          onPressed: context
-                                      .read<AuthenticationBloc>()
-                                      .state
-                                      .user
-                                      .phoneNumber !=
-                                  context
-                                      .read<PhoneCubit>()
-                                      .state
-                                      .phoneNumber
-                                      .value
-                              ? () async {
-                                  if (_formKey.currentState!.validate()) {
-                                    context.read<PhoneCubit>().sendPhoneOTP();
-                                  }
-                                }
-                              : null,
-                          text: 'Continue',
-                        ),
-                      ),
+                      // SizedBox(
+                      //   width: double.infinity,
+                      //   child: MainButton(
+                      //     onPressed: context
+                      //                 .read<AuthenticationBloc>()
+                      //                 .state
+                      //                 .user
+                      //                 .phoneNumber !=
+                      //             context
+                      //                 .read<PhoneCubit>()
+                      //                 .state
+                      //                 .phoneNumber
+                      //                 .value
+                      //         ? () async {
+                      //             if (_formKey.currentState!.validate()) {
+                      //               context.read<PhoneCubit>().sendPhoneOTP();
+                      //             }
+                      //           }
+                      //         : null,
+                      //     text: 'Continue',
+                      //   ),
+                      // ),
                     ],
                   ).px20().pOnly(bottom: 20),
                 ),

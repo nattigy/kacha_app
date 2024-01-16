@@ -1,11 +1,10 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../constants/app_images.dart';
-import '../auth/bloc/auth_bloc.dart';
-import '../auth/data/auth_repository.dart';
 import '../widgets/app_bar/only_logo_app_bar.dart';
 import '../widgets/auth_page_image.dart';
 import '../widgets/buttons/main_button.dart';
@@ -57,9 +56,9 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   );
               }
               if (state.status.isSuccess) {
-                context
-                    .read<AuthenticationBloc>()
-                    .add(AuthenticationReFetchUserChanged());
+                // context
+                //     .read<AuthenticationBloc>()
+                //     .add(AuthenticationReFetchUserChanged());
               }
             },
             builder: (context, state) => Stack(

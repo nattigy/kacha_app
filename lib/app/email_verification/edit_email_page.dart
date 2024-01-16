@@ -5,7 +5,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../utils/input_validators.dart';
 import '../../utils/navigator.dart';
-import '../auth/bloc/auth_bloc.dart';
 import '../widgets/buttons/main_button.dart';
 import '../widgets/inputs/text_input_field.dart';
 import '../widgets/text/form-label-text.dart';
@@ -25,10 +24,10 @@ class _EditEmailPageState extends State<EditEmailPage> {
 
   @override
   void initState() {
-    if (context.read<AuthenticationBloc>().state.user.email != null) {
-      emailCont.text = context.read<AuthenticationBloc>().state.user.email!;
-      isValidEmail = true;
-    }
+    // if (context.read<AuthenticationBloc>().state.user.email != null) {
+    //   emailCont.text = context.read<AuthenticationBloc>().state.user.email!;
+    //   isValidEmail = true;
+    // }
     super.initState();
   }
 
@@ -54,9 +53,9 @@ class _EditEmailPageState extends State<EditEmailPage> {
         }
         if (emailState is EmailSuccessful) {
           // navigatorPush(context, RootPage());
-          context
-              .read<AuthenticationBloc>()
-              .add(AuthenticationReFetchUserChanged());
+          // context
+          //     .read<AuthenticationBloc>()
+          //     .add(AuthenticationReFetchUserChanged());
         }
         if (emailState is EmailVerificationFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -106,9 +105,8 @@ class _EditEmailPageState extends State<EditEmailPage> {
                       width: double.infinity,
                       child: MainButton(
                         onPressed: isValidEmail
-                            ? () => context
-                                .read<EmailCubit>()
-                                .sendEmailOTP(emailCont.text.toLowerCase().trim())
+                            ? () => context.read<EmailCubit>().sendEmailOTP(
+                                emailCont.text.toLowerCase().trim())
                             : null,
                         text: "Send verification code",
                       ),

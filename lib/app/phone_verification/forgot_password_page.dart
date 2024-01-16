@@ -4,7 +4,6 @@ import 'package:formz/formz.dart';
 
 import '../../constants/app_images.dart';
 import '../../utils/navigator.dart';
-import '../login/login_page.dart';
 import '../widgets/app_bar/only_logo_app_bar.dart';
 import '../widgets/auth_page_image.dart';
 import '../widgets/buttons/main_button.dart';
@@ -107,10 +106,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               Expanded(
                 child: MainOutlineButton(
                   onPressed: () {
-                    navigatorPushReplacement(
-                      context,
-                      const LoginPage(),
-                    );
+                    // navigatorPushReplacement(
+                    //   context,
+                    //   const LoginPage(),
+                    // );
                   },
                   text: "Cancel",
                 ),

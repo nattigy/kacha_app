@@ -1,25 +1,28 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kacha_app/app/auth/bloc/app_bloc.dart';
+import 'package:kacha_app/app/login/login.dart';
+import 'package:kacha_app/app/sign_up/sign_up.dart';
 
 import 'app_view.dart';
-import 'auth/bloc/auth_bloc.dart';
-import 'auth/data/auth_repository.dart';
 import 'edit_user/bloc/edit_user.cubit.dart';
 import 'email_verification/bloc/email_cubit.dart';
 import 'email_verification/data/email_repository.dart';
-import 'login/bloc/login_cubit.dart';
 import 'phone_verification/bloc/phone_cubit.dart';
 import 'phone_verification/data/phone_repository.dart';
 import 'root/bloc/navigation_bloc.dart';
-import 'signup/bloc/sign_up.cubit.dart';
 import 'user/bloc/users.bloc.dart';
 import 'user/data/user.repository.dart';
 
 class App extends StatefulWidget {
-  App({super.key});
+  App({
+    required AuthenticationRepository authenticationRepository,
+    super.key,
+  }) : _authenticationRepository = authenticationRepository;
 
-  final AuthenticationRepository authenticationRepository =
-      AuthenticationRepository();
+  final AuthenticationRepository _authenticationRepository;
+
   final UserRepository userRepository = UserRepository();
 
   @override
@@ -31,13 +34,13 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider.value(value: widget.authenticationRepository),
+        RepositoryProvider.value(value: widget._authenticationRepository),
         RepositoryProvider.value(value: widget.userRepository),
       ],
       child: MultiBlocProvider(
         providers: [
-          BlocProvider<AuthenticationBloc>(
-            create: (context) => AuthenticationBloc(
+          BlocProvider<AppBloc>(
+            create: (context) => AppBloc(
               authenticationRepository:
                   context.read<AuthenticationRepository>(),
             ),
@@ -51,14 +54,12 @@ class _AppState extends State<App> {
           ),
           BlocProvider<LoginCubit>(
             create: (context) => LoginCubit(
-              authenticationRepository:
-                  RepositoryProvider.of<AuthenticationRepository>(context),
+              context.read<AuthenticationRepository>(),
             ),
           ),
           BlocProvider<SignUpCubit>(
             create: (context) => SignUpCubit(
-              authenticationRepository:
-                  context.read<AuthenticationRepository>(),
+              context.read<AuthenticationRepository>(),
             ),
           ),
           BlocProvider<PhoneCubit>(

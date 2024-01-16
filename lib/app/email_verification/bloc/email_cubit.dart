@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../utils/error_string.dart';
-import '../../auth/data/auth_repository.dart';
 import '../data/email_repository.dart';
 
 part 'email_state.dart';

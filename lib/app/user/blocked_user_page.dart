@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../auth/bloc/auth_bloc.dart';
 import '../widgets/app_bar/only_logo_app_bar.dart';
 
 class BlockedUserPage extends StatelessWidget {
@@ -39,9 +37,9 @@ class BlockedUserPage extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: TextButton(
               onPressed: () {
-                context
-                    .read<AuthenticationBloc>()
-                    .add(AuthenticationLogoutRequested());
+                // context
+                //     .read<AuthenticationBloc>()
+                //     .add(AuthenticationLogoutRequested());
               },
               child: const Text("Cancel and logout?"),
             ),

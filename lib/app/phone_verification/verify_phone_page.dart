@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
 import '../../utils/navigator.dart';
-import '../auth/bloc/auth_bloc.dart';
 import '../root/root_page.dart';
 import '../widgets/app_bar/only_logo_app_bar.dart';
 import '../widgets/buttons/main_button.dart';
@@ -26,21 +25,21 @@ class _VerifyPhonePageState extends State<VerifyPhonePage> {
 
   @override
   void initState() {
-    countryCode =
-        context.read<AuthenticationBloc>().state.user.countryCode ?? "+251";
-    countryISOCode =
-        context.read<AuthenticationBloc>().state.user.countryISOCode ?? "ET";
-    phoneNumberCont.text = context
-        .read<AuthenticationBloc>()
-        .state
-        .user
-        .phoneNumber
-        .replaceAll(countryCode, "");
-    context.read<PhoneCubit>().phoneNumberChanged(
-          context.read<AuthenticationBloc>().state.user.phoneNumber,
-        );
-    context.read<PhoneCubit>().countryCodeChanged(countryCode);
-    context.read<PhoneCubit>().countryISOCodeChanged(countryISOCode);
+    // countryCode =
+    //     context.read<AuthenticationBloc>().state.user.countryCode ?? "+251";
+    // countryISOCode =
+    //     context.read<AuthenticationBloc>().state.user.countryISOCode ?? "ET";
+    // phoneNumberCont.text = context
+    //     .read<AuthenticationBloc>()
+    //     .state
+    //     .user
+    //     .phoneNumber
+    //     .replaceAll(countryCode, "");
+    // context.read<PhoneCubit>().phoneNumberChanged(
+    //       context.read<AuthenticationBloc>().state.user.phoneNumber,
+    //     );
+    // context.read<PhoneCubit>().countryCodeChanged(countryCode);
+    // context.read<PhoneCubit>().countryISOCodeChanged(countryISOCode);
     super.initState();
   }
 
@@ -60,9 +59,9 @@ class _VerifyPhonePageState extends State<VerifyPhonePage> {
         }
         if (phoneState.status == FormzSubmissionStatus.success) {
           navigatorPush(context, const RootPage());
-          context
-              .read<AuthenticationBloc>()
-              .add(AuthenticationReFetchUserChanged());
+          // context
+          //     .read<AuthenticationBloc>()
+          //     .add(AuthenticationReFetchUserChanged());
         }
         if (phoneState.status == FormzSubmissionStatus.failure) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -145,9 +144,9 @@ class _VerifyPhonePageState extends State<VerifyPhonePage> {
                 alignment: Alignment.bottomCenter,
                 child: TextButton(
                   onPressed: () {
-                    context
-                        .read<AuthenticationBloc>()
-                        .add(AuthenticationLogoutRequested());
+                    // context
+                    //     .read<AuthenticationBloc>()
+                    //     .add(AuthenticationLogoutRequested());
                   },
                   child: const Text("Cancel and logout?"),
                 ),

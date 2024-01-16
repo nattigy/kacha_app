@@ -72,5 +72,4 @@ class UserEntity {
       "phoneVerified": phoneVerified,
     };
   }
-
 }

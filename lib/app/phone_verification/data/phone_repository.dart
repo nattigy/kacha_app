@@ -1,4 +1,4 @@
-import '../../auth/data/auth_repository.dart';
+import 'package:authentication_repository/authentication_repository.dart';
 
 class PhoneRepository {
   PhoneRepository({required this.authenticationRepository});
@@ -6,10 +6,10 @@ class PhoneRepository {
   final AuthenticationRepository authenticationRepository;
 
   Future<String> sendPhoneOTP(
-      String phoneNumber,
-      String countryCode,
-      String countryISOCode,
-      ) async {
+    String phoneNumber,
+    String countryCode,
+    String countryISOCode,
+  ) async {
     return "";
     // return result.data?['sendPhoneOTP']['token'];
   }
@@ -20,10 +20,10 @@ class PhoneRepository {
   }
 
   Future<String> forgotPassword(
-      String phoneNumber,
-      String countryCode,
-      String countryISOCode,
-      ) async {
+    String phoneNumber,
+    String countryCode,
+    String countryISOCode,
+  ) async {
     return "";
     // return result.data?['forgotPassword']['token'];
   }

@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:velocity_x/velocity_x.dart';
 
-import '../auth/bloc/auth_bloc.dart';
-import '../user/entity/user.entity.dart';
-import '../user/enum/user.enums.dart';
 import '../widgets/buttons/main_button.dart';
 import '../widgets/text/form-label-text.dart';
 import 'bloc/edit_user.cubit.dart';
@@ -30,21 +26,21 @@ class _EditUserState extends State<EditUser> {
 
   @override
   void initState() {
-    UserEntity user = context.read<AuthenticationBloc>().state.user;
-    context.read<EditUserCubit>().editUserPopulateAll(
-          user.fullName.split(" ")[0],
-          user.fullName.split(" ")[1],
-          user.fullName.split(" ")[2],
-          user.gender != null ? user.gender! : UserGenderEnum.FEMALE,
-        );
-    firstNameCont.text = user.fullName.split(" ")[0];
-    middleNameCont.text = user.fullName.split(" ")[1];
-    lastNameCont.text = user.fullName.split(" ")[2];
-    emailCont.text = user.email ?? "";
-    phoneNumberCont.text = user.phoneNumber?.substring(4) ?? "";
-    genderCont.text = user.gender != null
-        ? user.gender!.name.toLowerCase().upperCamelCase
-        : "Female";
+    // UserEntity user = context.read<AppBloc>().user;
+    // context.read<EditUserCubit>().editUserPopulateAll(
+    //       user.fullName.split(" ")[0],
+    //       user.fullName.split(" ")[1],
+    //       user.fullName.split(" ")[2],
+    //       user.gender != null ? user.gender! : UserGenderEnum.FEMALE,
+    //     );
+    // firstNameCont.text = user.fullName.split(" ")[0];
+    // middleNameCont.text = user.fullName.split(" ")[1];
+    // lastNameCont.text = user.fullName.split(" ")[2];
+    // emailCont.text = user.email ?? "";
+    // phoneNumberCont.text = user.phoneNumber?.substring(4) ?? "";
+    // genderCont.text = user.gender != null
+    //     ? user.gender!.name.toLowerCase().upperCamelCase
+    //     : "Female";
     super.initState();
   }
 
@@ -69,9 +65,9 @@ class _EditUserState extends State<EditUser> {
               );
           }
           if (editUserState.status.isSuccess) {
-            context
-                .read<AuthenticationBloc>()
-                .add(AuthenticationReFetchUserChanged());
+            // context
+            //     .read<AuthenticationBloc>()
+            //     .add(AuthenticationReFetchUserChanged());
           }
         },
         builder: (ctx, editUserState) {

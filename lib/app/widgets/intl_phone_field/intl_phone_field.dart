@@ -4,9 +4,9 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../utils/input_validators.dart';
 import './countries.dart';
 import './phone_number.dart';
-import '../../../utils/input_validators.dart';
 import 'country_picker_dialog.dart';
 
 class IntlPhoneField extends StatefulWidget {

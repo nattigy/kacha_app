@@ -1,4 +1,4 @@
-import '../../auth/data/auth_repository.dart';
+import 'package:authentication_repository/authentication_repository.dart';
 
 class ResetPasswordRepository {
   ResetPasswordRepository({required this.authenticationRepository});

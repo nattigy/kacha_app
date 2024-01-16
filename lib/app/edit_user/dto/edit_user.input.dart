@@ -1,4 +1,3 @@
-
 import '../../user/enum/user.enums.dart';
 
 class EditUserInput {
