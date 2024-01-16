@@ -14,6 +14,10 @@ class WelComePage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text("Welcome"),
+              Image.asset(
+                'assets/bloc_logo_small.png',
+                height: 120,
+              ),
               ElevatedButton(
                 onPressed: () {},
                 child: Text("Login"),

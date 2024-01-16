@@ -3,7 +3,13 @@ import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kacha_app/app/app.dart';
+import 'package:kacha_app/app/view/splash_page.dart';
+import 'package:kacha_app/home/home.dart';
+import 'package:kacha_app/login/login.dart';
 import 'package:kacha_app/theme.dart';
+
+import '../../utils/navigator.dart';
+import '../../utils/no_scroll_effect.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -21,24 +27,58 @@ class App extends StatelessWidget {
         create: (_) => AppBloc(
           authenticationRepository: _authenticationRepository,
         ),
-        child: const AppView(),
+        child: AppView(),
       ),
     );
   }
 }
 
 class AppView extends StatelessWidget {
-  const AppView({super.key});
+   AppView({super.key});
+
+  final _navigatorKey = GlobalKey<NavigatorState>();
+
+  NavigatorState get _navigator => _navigatorKey.currentState!;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: theme,
       debugShowCheckedModeBanner: false,
-      home: FlowBuilder<AppStatus>(
-        state: context.select((AppBloc bloc) => bloc.state.status),
-        onGeneratePages: onGenerateAppViewPages,
-      ),
+      navigatorKey: _navigatorKey,
+      builder: (context, child) {
+        return ScrollConfiguration(
+          behavior: NoScrollEffect(),
+          child: MultiBlocListener(
+            listeners: [
+              BlocListener<AuthenticationBloc, AuthenticationState>(
+                listener: (context, state) {
+                  switch (state.status) {
+                    case AuthenticationStatus.authenticated:
+                      _navigator.pushNamed(AppRoutes.homePage);
+                      // navigatorStatePushAndRemoveUntil(
+                      //   _navigator,
+                      //   const HomePage(),
+                      // );
+                      break;
+                    case AuthenticationStatus.unauthenticated:
+                      _navigator.pushNamed(AppRoutes.loginRoute);
+                      // navigatorStatePushAndRemoveUntil(
+                      //   _navigator,
+                      //   const LoginPage(),
+                      // );
+                      break;
+                  }
+                },
+              ),
+            ],
+            child: child!,
+          ),
+        );
+      },
+      home: const SplashPage(),
+      initialRoute: AppRoutes.splashRoute,
+      onGenerateRoute: RouterGenerator.generateRoute,
     );
   }
 }
