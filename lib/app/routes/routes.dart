@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:kacha_app/app/app.dart';
+import 'package:kacha_app/app/view/welcome.dart';
 import 'package:kacha_app/home/home.dart';
-import 'package:kacha_app/login/login.dart';
 
 List<Page<dynamic>> onGenerateAppViewPages(
   AppStatus state,
@@ -11,6 +11,6 @@ List<Page<dynamic>> onGenerateAppViewPages(
     case AppStatus.authenticated:
       return [HomePage.page()];
     case AppStatus.unauthenticated:
-      return [LoginPage.page()];
+      return [WelComePage.page()];
   }
 }

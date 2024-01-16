@@ -40,7 +40,6 @@ class SignUpWithEmailAndPasswordFailure implements Exception {
     }
   }
 
-  /// The associated error message.
   final String message;
 }
 
@@ -73,7 +72,6 @@ class LogInWithEmailAndPasswordFailure implements Exception {
     }
   }
 
-  /// The associated error message.
   final String message;
 }
 
@@ -122,11 +120,9 @@ class LogInWithGoogleFailure implements Exception {
     }
   }
 
-  /// The associated error message.
   final String message;
 }
 
-/// Thrown during the logout process if a failure occurs.
 class LogOutFailure implements Exception {}
 
 class AuthenticationRepository {
