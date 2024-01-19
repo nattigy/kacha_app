@@ -70,7 +70,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '948172562228',
     projectId: 'kachaapp-e4fb5',
     storageBucket: 'kachaapp-e4fb5.appspot.com',
-    iosClientId: '948172562228-hi48a0esv9mqg6s7ik6mlqhpurua86sl.apps.googleusercontent.com',
+    iosClientId:
+        '948172562228-hi48a0esv9mqg6s7ik6mlqhpurua86sl.apps.googleusercontent.com',
     iosBundleId: 'com.kacha.app.kachaApp',
   );
 }
