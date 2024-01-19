@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../utils/navigator.dart';
 import '../edit_user/edit_user_page.dart';
-import '../email_verification/edit_email_page.dart';
-import '../phone_verification/edit_phone_number_page.dart';
 import '../widgets/cards/margin_container.dart';
 import '../widgets/cards/max_width.dart';
 import 'bloc/users.bloc.dart';
@@ -65,46 +63,6 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                           ],
                         ),
                       ),
-                    const SizedBox(height: 16.0),
-                    OutlinedButton(
-                      onPressed: () => navigatorPush(
-                        context,
-                        const EditPhoneNumberPage(),
-                      ),
-                      style: ButtonStyle(
-                        padding: MaterialStateProperty.all(
-                          const EdgeInsets.all(16.0),
-                        ),
-                      ),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(Icons.phone),
-                          Text('Edit Phone Number'),
-                          SizedBox(width: 32.0),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 16.0),
-                    OutlinedButton(
-                      onPressed: () => navigatorPush(
-                        context,
-                        const EditEmailPage(),
-                      ),
-                      style: ButtonStyle(
-                        padding: MaterialStateProperty.all(
-                          const EdgeInsets.all(16.0),
-                        ),
-                      ),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(Icons.alternate_email_rounded),
-                          Text('Edit Email'),
-                          SizedBox(width: 32.0),
-                        ],
-                      ),
-                    ),
                     const SizedBox(height: 16.0),
                     OutlinedButton(
                       onPressed: () {

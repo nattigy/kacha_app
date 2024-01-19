@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kacha_app/app/upcoming/upcoming.dart';
 
-import '../widgets/app_bar/custom_app_bar.dart';
+import 'widgets/home_balance_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -18,11 +19,55 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  String selectedTab = "upcoming";
+
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-        onRefresh: () async => reLoadApp(),
-        child: Text("home"),
-      );
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: DefaultTabController(
+        length: 2,
+        child: ListView(
+          children: [
+            Text(
+              "Welcome, Nathnael",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            ),
+
+            HomeBalanceCard(),
+
+            TabBar(
+              tabs: [
+                Tab(
+                  child: Text("Upcoming"),
+                ),
+                Tab(
+                  child: Text("History"),
+                ),
+              ],
+            ),
+
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 2,
+              child: TabBarView(
+                children: [
+                  UpcomingPage(),
+                  ListView(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    children: [
+                      HomeBalanceCard(),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kacha_app/app/profile/profile.dart';
+import 'package:kacha_app/app/send/send_navigator.dart';
+import 'package:kacha_app/app/transactions/transactions_navigator.dart';
+import 'package:kacha_app/app/widgets/scaffold/drawer.dart';
+import 'package:kacha_app/utils/navigator.dart';
 
 import '../home/home_navigator.dart';
 import 'bloc/navigation_bloc.dart';
@@ -15,6 +20,8 @@ class RootPage extends StatefulWidget {
 class _RootPageState extends State<RootPage> {
   TabItem _currentTab = TabItem.home;
 
+  static const List<String> pageTitles = ["Home", "Send", "Transactions"];
+
   final tabNavigatorKeys = [
     GlobalKey<NavigatorState>(),
     GlobalKey<NavigatorState>(),
@@ -29,8 +36,9 @@ class _RootPageState extends State<RootPage> {
     globalNavigator = context;
     tabNavigators = [
       HomeNavigator(navigatorKey: tabNavigatorKeys[TabItem.home.index]),
-      HomeNavigator(navigatorKey: tabNavigatorKeys[TabItem.home.index]),
-      HomeNavigator(navigatorKey: tabNavigatorKeys[TabItem.home.index]),
+      SendNavigator(navigatorKey: tabNavigatorKeys[TabItem.send.index]),
+      TransactionsNavigator(
+          navigatorKey: tabNavigatorKeys[TabItem.transactions.index]),
     ];
     super.initState();
   }
@@ -91,49 +99,18 @@ class _RootPageState extends State<RootPage> {
         },
         builder: (ctx, state) {
           return Scaffold(
-            // appBar: const PreferredSize(
-            //   preferredSize: Size.fromHeight(55),
-            //   child: CustomAppBar(leading: false, isRoot: true),
-            // ),
             appBar: AppBar(
-              title: Text("Home"),
+              title: Text(pageTitles[_currentTab.index]),
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    navigatorPush(context, ProfilePage());
+                  },
+                  icon: Icon(Icons.person),
+                )
+              ],
             ),
-            drawer: Drawer(
-              child: Column(
-                children: [
-                  const DrawerHeader(
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                    ),
-                    child: Text('Drawer Header'),
-                  ),
-                  ListTile(
-                    title: const Text('Item 1'),
-                    onTap: () {
-                      // Update the state of the app.
-                      // ...
-                    },
-                  ),
-                  ListTile(
-                    title: const Text('Item 2'),
-                    onTap: () {
-                      // Update the state of the app.
-                      // ...
-                    },
-                  ),
-                  ListTile(
-                    title: const Text('Item 3'),
-                    onTap: () {
-                      // Update the state of the app
-                      // ...
-                      // Then close the drawer
-                      Navigator.pop(context);
-                    },
-                  ),
-                  Text("drawer"),
-                ],
-              ),
-            ),
+            drawer: CustomDrawer(),
             body: IndexedStack(
               index: _currentTab.index,
               children: [

@@ -9,7 +9,6 @@ class FirstTimePage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            // context.read<AuthenticationBloc>().add(AuthenticationSetFirstTime());
           },
           child: Text("Continue"),
         ),

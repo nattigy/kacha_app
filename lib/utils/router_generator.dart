@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kacha_app/app/first_time_page/first_time_page.dart';
 
 import '../app/app_view.dart';
-import '../app/first_time_page/first_time_page.dart';
 import '../app/login/view/login_page.dart';
-import '../app/phone_verification/forgot_password_page.dart';
-import '../app/reset_password/reset_password_page.dart';
 import '../app/root/root_page.dart';
 import '../app/root/splash_page.dart';
 import '../app/sign_up/view/sign_up_page.dart';
@@ -46,20 +44,6 @@ class RouterGenerator {
       case AppRoutes.signupRoute:
         return PageRouteBuilder(
           pageBuilder: (context, animation1, animation2) => const SignUpPage(),
-          transitionDuration: const Duration(seconds: 0),
-        );
-
-      case AppRoutes.forgotPswdRoute:
-        return PageRouteBuilder(
-          pageBuilder: (context, animation1, animation2) =>
-              const ForgotPasswordPage(),
-          transitionDuration: const Duration(seconds: 0),
-        );
-
-      case AppRoutes.resetPswdRoute:
-        return PageRouteBuilder(
-          pageBuilder: (context, animation1, animation2) =>
-              const ResetPasswordPage(),
           transitionDuration: const Duration(seconds: 0),
         );
 

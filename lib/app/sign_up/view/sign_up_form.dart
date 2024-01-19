@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:kacha_app/app/root/root_page.dart';
 import 'package:kacha_app/app/sign_up/sign_up.dart';
+import 'package:kacha_app/utils/navigator.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({super.key});
@@ -11,7 +13,7 @@ class SignUpForm extends StatelessWidget {
     return BlocListener<SignUpCubit, SignUpState>(
       listener: (context, state) {
         if (state.status.isSuccess) {
-          Navigator.of(context).pop();
+          navigatorPushAndRemoveUntil(context, RootPage());
         } else if (state.status.isFailure) {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
