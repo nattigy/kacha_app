@@ -2,8 +2,10 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kacha_app/app/auth/bloc/app_bloc.dart';
+import 'package:kacha_app/app/history/cubit/history.cubit.dart';
 import 'package:kacha_app/app/home/cubit/home.cubit.dart';
 import 'package:kacha_app/app/login/login.dart';
+import 'package:kacha_app/app/send/cubit/send.cubit.dart';
 import 'package:kacha_app/app/sign_up/sign_up.dart';
 import 'package:kacha_app/app/upcoming/cubit/upcoming.cubit.dart';
 import 'package:payment_repository/payment_repository.dart';
@@ -79,6 +81,16 @@ class _AppState extends State<App> {
             create: (context) => TopUpCubit(
               paymentRepository: context.read<PaymentRepository>(),
             ),
+          ),
+          BlocProvider<SendCubit>(
+            create: (context) => SendCubit(
+              paymentRepository: context.read<PaymentRepository>(),
+            ),
+          ),
+          BlocProvider<HistoryCubit>(
+            create: (context) => HistoryCubit(
+              paymentRepository: context.read<PaymentRepository>(),
+            )..loadHistoryCard(),
           ),
           BlocProvider<EditUserCubit>(
             create: (context) => EditUserCubit(

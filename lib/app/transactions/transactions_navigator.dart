@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../404/404_page.dart';
+import '../history/view/history_page.dart';
 
 class TransactionsNavigatorRoutes {
   static const String root = "/";
@@ -17,9 +18,7 @@ class TransactionsNavigator extends StatelessWidget {
     RouteSettings settings,
   ) {
     return {
-      TransactionsNavigatorRoutes.root: (ctx) => const Center(
-        child: Text("Transactions"),
-      ),
+      TransactionsNavigatorRoutes.root: (ctx) => HistoryPage(),
       TransactionsNavigatorRoutes.notFound: (ctx) => const NotFoundPage(),
     };
   }

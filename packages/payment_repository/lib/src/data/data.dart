@@ -1,5 +1,5 @@
 Map<String, dynamic> balance_data = {
-  "totalBalance": 0.0,
+  "totalBalance": 1000.0,
   "transactions": [],
   "upcoming": [
     {

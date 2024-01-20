@@ -17,6 +17,7 @@ class UpcomingCubit extends Cubit<UpcomingState> {
       emit(UpcomingLoadSuccess(item));
     } catch (e) {
       emit(UpcomingOperationFailure(errorString(e)));
+      emit(UpcomingUnknown());
     }
   }
 }

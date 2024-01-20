@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kacha_app/app/send/view/send_page.dart';
 
 import '../404/404_page.dart';
 
@@ -17,9 +18,7 @@ class SendNavigator extends StatelessWidget {
     RouteSettings settings,
   ) {
     return {
-      SendNavigatorRoutes.root: (ctx) => const Center(
-        child: Text("send"),
-      ),
+      SendNavigatorRoutes.root: (ctx) => SendPage(),
       SendNavigatorRoutes.notFound: (ctx) => const NotFoundPage(),
     };
   }

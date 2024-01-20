@@ -10,13 +10,21 @@ class TopUpCubit extends Cubit<TopUpState> {
 
   TopUpCubit({required this.paymentRepository}) : super(TopUpUnknown());
 
-  void topUp(double amount) async {
+  void topUp(String amount) async {
     emit(TopUpLoading());
     try {
-       await paymentRepository.topUp(amount);
+      var number = 0.0;
+      try{
+        number = double.parse(amount);
+      } catch (e){
+        throw Exception("Invalid input");
+      }
+      await paymentRepository.topUp(number);
       emit(TopUpLoadSuccess());
+      emit(TopUpUnknown());
     } catch (e) {
       emit(TopUpOperationFailure(errorString(e)));
+      emit(TopUpUnknown());
     }
   }
 }

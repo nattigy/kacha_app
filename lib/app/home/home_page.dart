@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kacha_app/app/history/view/history_section.dart';
 import 'package:kacha_app/app/upcoming/upcoming.dart';
 
 import 'widgets/home_balance_card.dart';
@@ -55,13 +56,7 @@ class _HomePageState extends State<HomePage> {
               child: TabBarView(
                 children: [
                   UpcomingPage(),
-                  ListView(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    children: [
-                      HomeBalanceCard(),
-                    ],
-                  ),
+                  HistorySection(),
                 ],
               ),
             ),

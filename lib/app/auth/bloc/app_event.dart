@@ -13,3 +13,5 @@ final class _AppUserChanged extends AppEvent {
 
   final User user;
 }
+
+final class AppRefresh extends AppEvent {}

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kacha_app/app/auth/bloc/app_bloc.dart';
+import 'package:kacha_app/app/history/cubit/history.cubit.dart';
 import 'package:kacha_app/app/home/cubit/home.cubit.dart';
-import 'package:kacha_app/app/root/root_page.dart';
 import 'package:kacha_app/app/top_up/cubit/top_up.cubit.dart';
 import 'package:kacha_app/app/widgets/cards/margin_container.dart';
 import 'package:kacha_app/app/widgets/scaffold/drawer_scaffold.dart';
-import 'package:kacha_app/utils/navigator.dart';
 
 class TopUpPage extends StatefulWidget {
   TopUpPage({super.key});
@@ -32,7 +32,8 @@ class _TopUpPageState extends State<TopUpPage> {
         }
         if (topState is TopUpLoadSuccess) {
           context.read<HomeCubit>().loadHomeCard();
-          navigatorPushAndRemoveUntil(context, RootPage());
+          context.read<HistoryCubit>().loadHistoryCard();
+          context.read<AppBloc>().add(AppRefresh());
         }
       },
       builder: (ctx, topState) {
@@ -65,17 +66,10 @@ class _TopUpPageState extends State<TopUpPage> {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            try {
-                              final number = double.parse(controller.text);
-                              context.read<TopUpCubit>().topUp(number);
-                            } catch (e) {
-                              context
-                                  .read<TopUpCubit>()
-                                  .emit(TopUpOperationFailure("Invalid input"));
-                            }
+                            context.read<TopUpCubit>().topUp(controller.text);
                           },
                           child: Text("Top up now"),
-                        ),
+                        )
                       ),
                     ],
                   ),
