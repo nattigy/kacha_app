@@ -18,6 +18,9 @@ class HistorySection extends StatelessWidget {
           return Center(child: CircularProgressIndicator());
         }
         if (historyState is HistoryLoadSuccess) {
+          if (historyState.transactionHistory.length == 0){
+            return Center(child: Text("No transactions yet."));
+          }
           return ListView(
             shrinkWrap: true,
             padding: EdgeInsets.only(bottom: 40),

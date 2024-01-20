@@ -44,3 +44,13 @@ void navigatorStatePushAndRemoveUntil(NavigatorState state, Widget page) {
     (route) => false,
   );
 }
+
+void navigatorStatePush(NavigatorState state, Widget page) {
+  state.push(
+    PageRouteBuilder(
+      pageBuilder: (context, animation1, animation2) => page,
+      transitionDuration: const Duration(seconds: 0),
+      reverseTransitionDuration: const Duration(seconds: 0),
+    ),
+  );
+}

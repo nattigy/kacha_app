@@ -30,12 +30,21 @@ class PaymentRepository {
   }
 
   Future<void> makeTransaction(Transaction transaction) async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
     if (balance_data["totalBalance"] == null) {
       throw new Exception("Invalid Transaction!");
     }
     if (balance_data["totalBalance"]! <= transaction.amount) {
       throw new Exception("Insufficient Balance!");
+    }
+    if(transaction.isUpcoming == true){
+      balance_data["upcoming"] = (balance_data["upcoming"] as List)
+          .map((u) {
+         if (u["id"] == transaction.upComingId){
+           u["isPaid"] = true;
+         }
+         return u;
+      }).toList();
     }
     balance_data["totalBalance"] =
         balance_data["totalBalance"] - transaction.amount;

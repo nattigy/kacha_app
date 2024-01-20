@@ -10,20 +10,22 @@ class UpcomingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size deviceSize = MediaQuery.of(context).size;
-
     return BlocBuilder<UpcomingCubit, UpcomingState>(
       builder: (ctx, upcomingState) {
         if (upcomingState is UpcomingLoading) {
           return Center(child: CircularProgressIndicator());
         }
         if (upcomingState is UpcomingLoadSuccess) {
+          if (upcomingState.upcomingPayments.length == 0){
+            return Center(child: Text("No upcoming payments, you are all settled"));
+          }
           return ListView(
             shrinkWrap: true,
             padding: EdgeInsets.only(bottom: 40),
-            children: upcomingState.upcomingPayments
-                .map((e) => UpcomingCard(upcomingPayment: e))
-                .toList(),
+            children: upcomingState.upcomingPayments.map((e) {
+              if (e.isPaid) return Container();
+              return UpcomingCard(upcomingPayment: e);
+            }).toList(),
           );
         }
         if (upcomingState is UpcomingOperationFailure) {

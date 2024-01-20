@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kacha_app/app/send/view/send_page.dart';
+import 'package:kacha_app/utils/navigator.dart';
 import 'package:payment_repository/payment_repository.dart';
 
 class UpcomingCard extends StatelessWidget {
@@ -35,7 +37,9 @@ class UpcomingCard extends StatelessWidget {
                   Row(
                     children: [
                       Text("due date: "),
-                      Text(upcomingPayment.dueDate.toIso8601String().split("T")[0]),
+                      Text(upcomingPayment.dueDate
+                          .toIso8601String()
+                          .split("T")[0]),
                     ],
                   ),
                 ],
@@ -45,7 +49,16 @@ class UpcomingCard extends StatelessWidget {
                   backgroundColor:
                       MaterialStateProperty.all(Colors.yellowAccent.shade100),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  navigatorPush(
+                    context,
+                    SendPage(
+                      amount: upcomingPayment.amount.toString(),
+                      to: upcomingPayment.title.toString(),
+                      id: upcomingPayment.id.toString(),
+                    ),
+                  );
+                },
                 child: Text("Pay now"),
               ),
             ],

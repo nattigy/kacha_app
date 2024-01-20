@@ -22,7 +22,8 @@ class SendCubit extends Cubit<SendState> {
     }
   }
 
-  void checkValid(String amount, String to, String description) async {
+  void checkValid(
+      String amount, String to, String description, String? id) async {
     try {
       final number = double.parse(amount);
       if (to.length < 3) {
@@ -39,6 +40,8 @@ class SendCubit extends Cubit<SendState> {
           to: to,
           description: description,
           createdAt: DateTime.now(),
+          upComingId: id,
+          isUpcoming: id != null ? true : false,
         )));
       }
     } catch (e) {

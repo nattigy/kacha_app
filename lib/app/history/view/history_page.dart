@@ -18,14 +18,15 @@ class HistoryPage extends StatelessWidget {
           return Scaffold(body: Center(child: CircularProgressIndicator()));
         }
         if (historyState is HistoryLoadSuccess) {
-          return Scaffold(
-            body: ListView(
-              shrinkWrap: true,
-              padding: EdgeInsets.only(bottom: 40),
-              children: historyState.transactionHistory
-                  .map((e) => HistoryCard(transaction: e))
-                  .toList(),
-            ),
+          if (historyState.transactionHistory.length == 0) {
+            return Center(child: Text("No transactions yet."));
+          }
+          return ListView(
+            shrinkWrap: true,
+            padding: EdgeInsets.only(bottom: 40),
+            children: historyState.transactionHistory
+                .map((e) => HistoryCard(transaction: e))
+                .toList(),
           );
         }
         if (historyState is HistoryOperationFailure) {

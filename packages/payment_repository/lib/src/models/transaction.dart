@@ -5,6 +5,8 @@ class Transaction {
     required this.to,
     required this.description,
     required this.createdAt,
+     this.isUpcoming = false,
+     this.upComingId = "false",
   });
 
   final double amount;
@@ -12,6 +14,8 @@ class Transaction {
   final String to;
   final String description;
   final DateTime createdAt;
+  final bool? isUpcoming;
+  final String? upComingId;
 
   factory Transaction.fromJson(Map<String, dynamic> data) {
     return Transaction(
