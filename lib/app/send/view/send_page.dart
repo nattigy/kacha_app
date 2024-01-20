@@ -136,7 +136,7 @@ class _SendPageState extends State<SendPage> {
               child: const Text('Cancel'),
               onPressed: () {
                 Navigator.of(ctx).pop();
-                Navigator.of(ctx).pop();
+                if (Navigator.of(ctx).canPop()) Navigator.of(ctx).pop();
               },
             ),
             TextButton(
@@ -146,7 +146,7 @@ class _SendPageState extends State<SendPage> {
               child: const Text('Send'),
               onPressed: () {
                 Navigator.of(ctx).pop();
-                Navigator.of(ctx).pop();
+                if (Navigator.of(ctx).canPop()) Navigator.of(ctx).pop();
                 context.read<SendCubit>().send(transaction);
               },
             ),

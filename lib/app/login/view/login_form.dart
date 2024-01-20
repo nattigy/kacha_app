@@ -38,8 +38,6 @@ class LoginForm extends StatelessWidget {
               _PasswordInput(),
               const SizedBox(height: 8),
               _LoginButton(),
-              const SizedBox(height: 8),
-              _GoogleLoginButton(),
               const SizedBox(height: 4),
               _SignUpButton(),
             ],
